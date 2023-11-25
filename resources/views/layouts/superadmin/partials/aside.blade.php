@@ -169,7 +169,47 @@
                     <span class="nav-link-text ms-1">Pengaduan</span>
                 </a>
             </li>
+
+            <!-- buat logout -->
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Logout</h6>
+            </li>
+
+            <li class="nav-item">
+    <a class="nav-link" href="#" onclick="confirmLogout()">
+        <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center aside-box">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" class="aside-icons" viewBox="0 0 512 512">
+                <!-- Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
+                <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zM256 448c-105.9 0-192-86.13-192-192S150.1 64 256 64s192 86.13 192 192S361.9 448 256 448zM352 288H160c-8.836 0-16-7.164-16-16s7.164-16 16-16h192c8.836 0 16 7.164 16 16S360.8 288 352 288z" />
+            </svg>
+        </div>
+        <span class="nav-link-text ms-1">Logout</span>
+    </a>
+</li>
         </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
+    @csrf
+</form>
     </div>
     </div>
 </aside>
+
+
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Logout',
+            text: 'Are you sure you want to logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, logout!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, submit the logout form
+                document.getElementById('logout-form').submit();
+            }
+        });
+    }
+</script>

@@ -16,6 +16,8 @@
 <html lang="en">
 
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @include('layouts.partials.header')
 </head>
 
