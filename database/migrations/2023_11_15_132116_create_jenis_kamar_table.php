@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('id_fasilitas')->constrained('fasilitas')->restrictOnDelete();
             $table->foreignId('id_cabang')->constrained('cabang')->restrictOnDelete();
             $table->string('nama_jenis');
+            $table->text('deskripsi');
             $table->double('harga');
             $table->string('gambar');
             $table->timestamps();

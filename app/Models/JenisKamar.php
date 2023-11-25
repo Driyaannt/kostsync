@@ -14,6 +14,7 @@ class JenisKamar extends Model
         'id_fasilitas',
         'id_cabang',
         'nama_jenis',
+        'deskripsi',
         'harga',
         'gambar',
     ];

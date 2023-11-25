@@ -9,8 +9,8 @@
         <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
             <div class="row gx-4">
                 <div class="col-auto">
-                    <div class="fw-bold fs-4">Admin 51</div>
-                    <div class="fw-light">Kost Sigura gura</div>
+                    <div class="fw-bold fs-4">{{ auth()->user()->nama }}</div>
+                    <div class="fw-light">{{ $cabang->nama_cabang }}</div>
                 </div>
                 <div class="col-auto my-auto">
                 </div>
@@ -34,178 +34,124 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"><i
                                 class="fa fa-times"></i></button>
                     </div>
-                    {{-- modal body start --}}
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">nama</label>
+                    <form action="{{ route('admin.ruang.store') }}" method="post">
+                        @csrf
+                        {{-- modal body start --}}
+                        <div class="modal-body">
+                            <div class="form-floating ">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="example"
+                                    name="nama_jenis">
+                                <label for="floatingInput" class="text-lg fw-normal">nama</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2" class="text-lg fw-normal">Deskripsi</label>
+                        <div class="modal-body">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"
+                                    name="deskripsi"></textarea>
+                                <label for="floatingTextarea2" class="text-lg fw-normal">Deskripsi</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">harga bulanan</label>
+                        <div class="modal-body">
+                            <div class="form-floating ">
+                                <input type="number" class="form-control" id="floatingInput" placeholder="1000000"
+                                    name="harga">
+                                <label for="floatingInput" class="text-lg fw-normal">harga bulanan</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">Alamat</label>
+                        <div class="modal-body">
+                            <div class="form-floating ">
+                                <input type="number" class="form-control" id="floatingInput" placeholder="1"
+                                    name="jumlah_kamar">
+                                <label for="floatingInput" class="text-lg fw-normal">Jumlah Kamar</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">Jumlah Kamar</label>
-                        </div>
-                    </div>
 
-                    <div class="mx-auto">
-                        {{-- dropdown start --}}
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Kamar untuk
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Laki-laki</a></li>
-                                <li><a class="dropdown-item" href="#">Perempuan</a></li>
-                            </ul>
-                        </div>
-                        {{-- dropdown end --}}
-                    </div>
 
-                    <div class="mx-auto">
-                        {{-- dropdown start --}}
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Fitur
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
-                                <li><a class="dropdown-item" href="#">Dapur</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                        {{-- dropdown end --}}
-                    </div>
+                        <!--
+                                                       <div class="mx-auto">
+                                                            {{-- dropdown start --}}
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Kamar untuk
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#">Laki-laki</a></li>
+                                                                <li><a class="dropdown-item" href="#">Perempuan</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        {{-- dropdown end --}}
+                                                </div>
+                                            -->
 
-                    {{-- modal body end --}}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
+
+                        <!--
+                                                 <div class="mx-auto">
+                                                    {{-- dropdown start --}}
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        Fitur
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
+                                                        <li><a class="dropdown-item" href="#">Dapur</a></li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                                {{-- dropdown end --}}
+                                            </div>
+                                              -->
+
+                        <div class="modal-body">
+                            <div class="form-floating ">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="example"
+                                    name="fasilitas">
+                                <label for="floatingInput" class="text-lg fw-normal">fasilitas</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="modal-body">
+
+
+                            {{-- modal body end --}}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            <!-- Modal end-->
+
+
         </div>
-        <!-- Modal end-->
 
         <div class="row">
             {{-- cards start --}}
+            @foreach ($jenis_kamars as $item)
+                @php
+                    $excerpt = Str::limit($item->deskripsi, 30, '...');
+                @endphp
+                {{-- card start, make sure col class is here --}}
+                <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
+                    <div class="card card-responsive">
+                        <img class="card-img-top" src="{{ asset("assets/img/img-kost/$item->gambar") }}" alt="Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama_jenis }}</h5>
+                            <p class="card-text">{{ $excerpt }}</p>
 
-            {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src="{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
+                            <a href="{{ route('admin.ruang-detail', $item->id) }}" class="btn btn-primary">Periksa</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {{-- card end --}}
-
-            {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src="{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}}
-
-            {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src=  "{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}}
-
-            {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top"src="{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}}
-
-            {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src=  "{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}} {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src=  "{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}} {{-- card start, make sure col class is here --}}
-            <div class="col-xl-3 col-md-4 col-sm-6 mb-xl-2 mb-4 mt-4">
-                <div class="card card-responsive">
-                    <img class="card-img-top" src=  "{{ asset('assets/img/img-kost/kamar-1.jpeg') }}" alt="Image">
-                    <div class="card-body">
-                        <h5 class="card-title">Ruangan Kost 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <a href="{{ route('admin.ruang-detail') }}" class="btn btn-primary">Periksa</a>
-                    </div>
-                </div>
-            </div>
-            {{-- card end --}}
+                {{-- card end --}}
+            @endforeach
 
             {{-- cards end --}}
 
         </div>
-    </div>
-@endsection
+    @endsection

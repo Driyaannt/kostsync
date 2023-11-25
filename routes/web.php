@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CabangController;
+use App\Http\Controllers\JenisKamarController;
 use App\Http\Controllers\OutletDetailController;
 use App\Http\Controllers\SadminController;
 use App\Http\Controllers\KontakController;
@@ -62,8 +63,6 @@ Route::middleware(['auth', 'role.access:user'])->group(function () {
 
     Route::get('/kontak', [KontakController::class, 'index'])->name('user.kontak');
     Route::post('/submit-form', [KontakController::class, 'submitForm'])->name('submit.form');
-
-    
 });
 
 Route::middleware(['auth', 'role.access:admin'])->group(function () {
@@ -75,9 +74,9 @@ Route::middleware(['auth', 'role.access:admin'])->group(function () {
             Route::get('/dashboard',  function () {
                 return view('layouts.admin.admin_dashboard');
             })->name('dashboard');
-            Route::get('/ruang',  function () {
-                return view('layouts.admin.ruang');
-            })->name('ruang');
+            Route::get('/ruang', [JenisKamarController::class, 'index'])->name('ruang');
+            Route::get('/ruang-detail/{id}',  [JenisKamarController::class, 'show'])->name('ruang-detail');
+            Route::post('/ruang/store', [JenisKamarController::class, 'store'])->name('ruang.store');
             Route::get('/pembayaran',  function () {
                 $linkToView = 'layouts.admin.main'; //file parent layout, yang akan menjadi extend dari view yang di return
                 return view('layouts.pembayaran', $data = [
@@ -96,9 +95,6 @@ Route::middleware(['auth', 'role.access:admin'])->group(function () {
                     'parentLayout' => $linkToView
                 ]);
             })->name('pengaduan');
-            Route::get('/ruang-detail',  function () {
-                return view('layouts.admin.ruang-detail');
-            })->name('ruang-detail');
         });
     });
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cabang;
+
 class CabangController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class CabangController extends Controller
     public function store(Request $request)
     {
         Cabang::create($request->all());
-    return redirect()->route('superadmin.outlet');
+        return redirect()->route('superadmin.outlet');
     }
 
     /**
