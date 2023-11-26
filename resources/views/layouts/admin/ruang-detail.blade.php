@@ -51,73 +51,117 @@
                                 class="fa fa-times"></i></button>
                     </div>
                     {{-- modal body start --}}
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">nama</label>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2" class="text-lg fw-normal">Deskripsi</label>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">harga bulanan</label>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">Alamat</label>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-floating ">
-                            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput" class="text-lg fw-normal">Jumlah Kamar</label>
-                        </div>
-                    </div>
+                    <form action="{{ route('admin.ruang.update', $jenis_kamar->id) }}" method="post">
+                        @csrf
+                        @method('put')
+                        {{-- modal body start --}}
+                        <div class="modal-body">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('nama_jenis') error @enderror"
+                                    id="floatingInput" placeholder="example" name="nama_jenis"
+                                    value="{{ $jenis_kamar->nama_jenis }}">
+                                <label for="floatingInput" class="text-lg fw-normal">nama</label>
+                            </div>
+                            @error('nama_jenis')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
 
-                    <div class="mx-auto">
-                        {{-- dropdown start --}}
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Kamar untuk
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Laki-laki</a></li>
-                                <li><a class="dropdown-item" href="#">Perempuan</a></li>
-                            </ul>
-                        </div>
-                        {{-- dropdown end --}}
-                    </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control  @error('deskripsi') error @enderror" placeholder="Leave a comment here"
+                                    id="floatingTextarea2" style="height: 100px" name="deskripsi">{{ $jenis_kamar->deskripsi }}</textarea>
+                                <label for="floatingTextarea2" class="text-lg fw-normal">Deskripsi</label>
+                            </div>
+                            @error('deskripsi')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
 
-                    <div class="mx-auto">
-                        {{-- dropdown start --}}
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Fitur
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
-                                <li><a class="dropdown-item" href="#">Dapur</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                        {{-- dropdown end --}}
-                    </div>
+                            <div class="form-floating mb-3 ">
+                                <input type="number" class="form-control @error('harga') error @enderror"
+                                    id="floatingInput" placeholder="1000000" name="harga"
+                                    value="{{ $jenis_kamar->harga }}">
+                                <label for="floatingInput" class="text-lg fw-normal">harga bulanan</label>
+                            </div>
+                            @error('harga')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
 
-                    {{-- modal body end --}}
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
+                            <div class="form-floating mb-3 ">
+                                <input type="number" class="form-control @error('jumlah_kamar') error @enderror"
+                                    id="floatingInput" placeholder="1" name="jumlah_kamar" value="{{ $jumlah_kamar }}">
+                                <label for="floatingInput" class="text-lg fw-normal">Jumlah Kamar</label>
+                            </div>
+                            @error('jumlah_kamar')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+
+
+                            <!--
+                                                                                <div class="mx-auto">
+                                                                                     {{-- dropdown start --}}
+                                                                                 <div class="dropdown">
+                                                                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                                                         aria-expanded="false">
+                                                                                         Kamar untuk
+                                                                                     </button>
+                                                                                     <ul class="dropdown-menu">
+                                                                                         <li><a class="dropdown-item" href="#">Laki-laki</a></li>
+                                                                                         <li><a class="dropdown-item" href="#">Perempuan</a></li>
+                                                                                     </ul>
+                                                                                 </div>
+                                                                                 {{-- dropdown end --}}
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                    -->
+
+
+                            <!--
+                                                                                                                                                                                                                                                                                         <div class="mx-auto">
+                                                                             {{-- dropdown start --}}
+                                                                                                                                                                                                                                                                                        <div class="dropdown">
+                                                                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                                                 aria-expanded="false">
+                                                                                 Fitur
+                                                                             </button>
+                                                                             <ul class="dropdown-menu">
+                                                                                 <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
+                                                                                 <li><a class="dropdown-item" href="#">Dapur</a></li>
+                                                                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                             </ul>
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                        {{-- dropdown end --}}
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                      -->
+
+
+                            <div class="form-floating mb-3 ">
+                                <input type="text" class="form-control @error('fasilitas') error @enderror"
+                                    id="floatingInput" placeholder="example" name="fasilitas"
+                                    value="{{ $jenis_kamar->fasilitas->nama_fasilitas }}">
+                                <label for="floatingInput" class="text-lg fw-normal">fasilitas</label>
+                            </div>
+                            @error('fasilitas')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                            {{-- <input type="hidden" name="id" value="{{ $jenis_kamar->id }}"> --}}
+
+                            {{-- modal body end --}}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -154,7 +198,8 @@
 
                                 <div class="row">
                                     <div class="col-3">Jumlah Kamar</div>
-                                    <div class="col-9">: {{ $jumlah_kamar_tidak_tersedia + $jumlah_kamar_tersedia }}</div>
+                                    <div class="col-9">: {{ $jumlah_kamar }}
+                                    </div>
                                 </div>
 
                                 <div class="row">

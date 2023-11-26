@@ -64,14 +64,14 @@ class JenisKamarController extends Controller
         // dd($jenis_kamar);
         $jumlah_kamar_tidak_tersedia = Kamar::where('id_jenis', $id)->where('status', 'tidak tersedia')->count();
         $jumlah_kamar_tersedia = Kamar::where('id_jenis', $id)->where('status', 'tersedia')->count();
-        return view('layouts.admin.ruang-detail', ['jenis_kamar' => $jenis_kamar, 'jumlah_kamar_tidak_tersedia' => $jumlah_kamar_tidak_tersedia, 'jumlah_kamar_tersedia' => $jumlah_kamar_tersedia]);
+        $jumlah_kamar = $jumlah_kamar_tersedia + $jumlah_kamar_tidak_tersedia;
+        return view('layouts.admin.ruang-detail', ['jenis_kamar' => $jenis_kamar, 'jumlah_kamar_tidak_tersedia' => $jumlah_kamar_tidak_tersedia, 'jumlah_kamar_tersedia' => $jumlah_kamar_tersedia, 'jumlah_kamar' => $jumlah_kamar]);
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(JenisKamar $jenisKamar)
     {
-        //
     }
 
     /**
@@ -79,7 +79,10 @@ class JenisKamarController extends Controller
      */
     public function update(Request $request, JenisKamar $jenisKamar)
     {
-        //
+        //TODO: implement update
+        // $validated = $request->validate($this->validator_jenis_kamar);
+        // $jenisKamar->update($validated);
+        // return redirect()->route('admin.ruang');
     }
 
     /**
