@@ -23,11 +23,14 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" href="javascript:;" role="tab"
-                                    aria-selected="false">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    <span class="ms-1">Hapus</span>
-                                </a>
+                                <form action="{{ route('admin.ruang.destroy', $jenis_kamar->id) }}" method="DELETE">
+                                    @csrf
+                                    <button type="submit" class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab"
+                                        href="javascript:;" role="tab" aria-selected="false">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        <span class="ms-1">Hapus</span>
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>

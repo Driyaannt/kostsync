@@ -34,33 +34,25 @@ class JenisKamarController extends Controller
     public function store(Request $request)
     {
         //TODO: masukin foto
+        $fasilitas_validated = $request->validate($this->valiator_fasilitas);
+        $new_fasilitas = Fasilitas::create(['nama_fasilitas' => $fasilitas_validated['fasilitas']]);
 
-        $new_fasilitas = Fasilitas::create([
-            'nama_fasilitas' => $request->fasilitas,
-        ]);
-
-        $validated = $request->validate([
-            'nama_jenis' => 'required|max:255|min:3',
-            'deskripsi' => 'required|min:3',
-            'harga' => 'required|numeric',
-            // 'jumlah_kamar' => 'required|numeric',
-            //'fasilitas' => 'required|max:255|min:3',
-            // 'foto' => 'required',
-        ]);
-
+        $validated = $request->validate($this->validator_jenis_kamar);
         $validated['id_cabang'] = auth()->user()->id_cabang;
         $validated['id_fasilitas'] = $new_fasilitas->id;
         $validated['gambar'] = '';
-
         $new_jenis_kamar =  JenisKamar::create($validated);
 
-        for ($i = 0; $i < $request->jumlah_kamar; $i++) {
+        $jumlah_kamar_validated = $request->validate($this->validator_jumlah_kamar);
+        for ($i = 1; $i <= $jumlah_kamar_validated['jumlah_kamar']; $i++) {
             DB::table('kamar')->insert([
                 'id_jenis' => $new_jenis_kamar->id,
                 'nama_kamar' => "Kamar $i $new_jenis_kamar->nama_jenis",
                 'status' => 'tersedia',
             ]);
         }
+
+        return redirect()->route('admin.ruang');
     }
 
     /**
@@ -95,6 +87,21 @@ class JenisKamarController extends Controller
      */
     public function destroy(JenisKamar $jenisKamar)
     {
-        //
+        dd("masuk destroy $jenisKamar");
+        $jenisKamar->delete();
     }
+
+    private $valiator_fasilitas = [
+        'fasilitas' => 'required|max:255|min:3',
+    ];
+
+    private $validator_jenis_kamar = [
+        'nama_jenis' => 'required|max:255|min:3',
+        'deskripsi' => 'required|min:3',
+        'harga' => 'required|numeric',
+    ];
+
+    private $validator_jumlah_kamar = [
+        'jumlah_kamar' => 'required|numeric',
+    ];
 }

@@ -38,83 +38,102 @@
                         @csrf
                         {{-- modal body start --}}
                         <div class="modal-body">
-                            <div class="form-floating ">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="example"
-                                    name="nama_jenis">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control @error('nama_jenis') error @enderror"
+                                    id="floatingInput" placeholder="example" name="nama_jenis"
+                                    value="{{ old('nama_jenis') }}">
                                 <label for="floatingInput" class="text-lg fw-normal">nama</label>
                             </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"
-                                    name="deskripsi"></textarea>
+                            @error('nama_jenis')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control  @error('deskripsi') error @enderror" placeholder="Leave a comment here"
+                                    id="floatingTextarea2" style="height: 100px" name="deskripsi">{{ old('deskripsi') }}</textarea>
                                 <label for="floatingTextarea2" class="text-lg fw-normal">Deskripsi</label>
                             </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-floating ">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="1000000"
-                                    name="harga">
+                            @error('deskripsi')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                            <div class="form-floating mb-3 ">
+                                <input type="number" class="form-control @error('harga') error @enderror"
+                                    id="floatingInput" placeholder="1000000" name="harga" value="{{ old('harga') }}">
                                 <label for="floatingInput" class="text-lg fw-normal">harga bulanan</label>
                             </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-floating ">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="1"
-                                    name="jumlah_kamar">
+                            @error('harga')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+
+                            <div class="form-floating mb-3 ">
+                                <input type="number" class="form-control @error('jumlah_kamar') error @enderror"
+                                    id="floatingInput" placeholder="1" name="jumlah_kamar"
+                                    value="{{ old('jumlah_kamar') }}">
                                 <label for="floatingInput" class="text-lg fw-normal">Jumlah Kamar</label>
                             </div>
-                        </div>
+                            @error('jumlah_kamar')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
 
 
-                        <!--
-                                                       <div class="mx-auto">
-                                                            {{-- dropdown start --}}
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
-                                                                Kamar untuk
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#">Laki-laki</a></li>
-                                                                <li><a class="dropdown-item" href="#">Perempuan</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        {{-- dropdown end --}}
-                                                </div>
-                                            -->
+
+                            <!--
+        <div class="mx-auto">
+             {{-- dropdown start --}}
+         <div class="dropdown">
+             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                 Kamar untuk
+             </button>
+             <ul class="dropdown-menu">
+                 <li><a class="dropdown-item" href="#">Laki-laki</a></li>
+                 <li><a class="dropdown-item" href="#">Perempuan</a></li>
+             </ul>
+         </div>
+         {{-- dropdown end --}}
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            -->
 
 
-                        <!--
-                                                 <div class="mx-auto">
-                                                    {{-- dropdown start --}}
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        Fitur
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
-                                                        <li><a class="dropdown-item" href="#">Dapur</a></li>
-                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                                {{-- dropdown end --}}
-                                            </div>
-                                              -->
+                            <!--
+                                                                                                                                                                                                                 <div class="mx-auto">
+     {{-- dropdown start --}}
+                                                                                                                                                                                                                <div class="dropdown">
+     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+         aria-expanded="false">
+         Fitur
+     </button>
+     <ul class="dropdown-menu">
+         <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
+         <li><a class="dropdown-item" href="#">Dapur</a></li>
+         <li><a class="dropdown-item" href="#">Something else here</a></li>
+     </ul>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                {{-- dropdown end --}}
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                              -->
 
-                        <div class="modal-body">
-                            <div class="form-floating ">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="example"
-                                    name="fasilitas">
+
+                            <div class="form-floating mb-3 ">
+                                <input type="text" class="form-control @error('fasilitas') error @enderror"
+                                    id="floatingInput" placeholder="example" name="fasilitas"
+                                    value="{{ old('fasilitas') }}">
                                 <label for="floatingInput" class="text-lg fw-normal">fasilitas</label>
                             </div>
-                        </div>
-
-
-
-                        <div class="modal-body">
-
+                            @error('fasilitas')
+                                <p class="text-xs text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
 
                             {{-- modal body end --}}
                             <div class="modal-footer">

@@ -77,6 +77,7 @@ Route::middleware(['auth', 'role.access:admin'])->group(function () {
             Route::get('/ruang', [JenisKamarController::class, 'index'])->name('ruang');
             Route::get('/ruang-detail/{id}',  [JenisKamarController::class, 'show'])->name('ruang-detail');
             Route::post('/ruang/store', [JenisKamarController::class, 'store'])->name('ruang.store');
+            Route::delete('/ruang/{id}', [JenisKamarController::class, 'destroy'])->name('ruang.destroy'); //TODO: belum bisa
             Route::get('/pembayaran',  function () {
                 $linkToView = 'layouts.admin.main'; //file parent layout, yang akan menjadi extend dari view yang di return
                 return view('layouts.pembayaran', $data = [
