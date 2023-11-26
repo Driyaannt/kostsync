@@ -85,10 +85,18 @@ class JenisKamarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JenisKamar $jenisKamar)
+    public function destroy($id)
     {
-        dd("masuk destroy $jenisKamar");
-        $jenisKamar->delete();
+        //mengecek apakah ada kamar yang terpakai, jika ada return
+        $jumlah_kamar_tidak_tersedia = Kamar::where('id_jenis', $id)->where('status', 'tidak tersedia')->count();
+        if ($jumlah_kamar_tidak_tersedia > 0) {
+            return redirect()->back()->with('kamarTerpakai', 'Tidak bisa menghapus kamar yang masih terpakai');
+        }
+
+
+        //jika tidak, hapus, beserta tiap kamar
+        Kamar::where('id_jenis', $id)->delete();
+        JenisKamar::destroy($id);
     }
 
     private $valiator_fasilitas = [

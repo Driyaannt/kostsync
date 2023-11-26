@@ -23,8 +23,9 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <form action="{{ route('admin.ruang.destroy', $jenis_kamar->id) }}" method="DELETE">
+                                <form action="{{ route('admin.ruang.destroy', $jenis_kamar->id) }}" method="post">
                                     @csrf
+                                    @method('delete')
                                     <button type="submit" class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab"
                                         href="javascript:;" role="tab" aria-selected="false">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -122,6 +123,11 @@
         </div>
         <!-- Modal end-->
 
+        @if (session('kamarTerpakai'))
+            <div class="alert alert-danger mt-3" role="alert">
+                <p class="text-white">{{ session('kamarTerpakai') }}</p>
+            </div>
+        @endif
 
         <div class="container-fluid py-4">
             <div class="row">
