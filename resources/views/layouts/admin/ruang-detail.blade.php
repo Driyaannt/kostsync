@@ -105,40 +105,40 @@
 
 
                             <!--
-                                                                                <div class="mx-auto">
-                                                                                     {{-- dropdown start --}}
-                                                                                 <div class="dropdown">
-                                                                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                                                                         aria-expanded="false">
-                                                                                         Kamar untuk
-                                                                                     </button>
-                                                                                     <ul class="dropdown-menu">
-                                                                                         <li><a class="dropdown-item" href="#">Laki-laki</a></li>
-                                                                                         <li><a class="dropdown-item" href="#">Perempuan</a></li>
-                                                                                     </ul>
-                                                                                 </div>
-                                                                                 {{-- dropdown end --}}
-                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                    -->
+                                                                                                        <div class="mx-auto">
+                                                                                                             {{-- dropdown start --}}
+                                                                                                         <div class="dropdown">
+                                                                                                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                                                                                 aria-expanded="false">
+                                                                                                                 Kamar untuk
+                                                                                                             </button>
+                                                                                                             <ul class="dropdown-menu">
+                                                                                                                 <li><a class="dropdown-item" href="#">Laki-laki</a></li>
+                                                                                                                 <li><a class="dropdown-item" href="#">Perempuan</a></li>
+                                                                                                             </ul>
+                                                                                                         </div>
+                                                                                                         {{-- dropdown end --}}
+                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                            -->
 
 
                             <!--
-                                                                                                                                                                                                                                                                                         <div class="mx-auto">
-                                                                             {{-- dropdown start --}}
-                                                                                                                                                                                                                                                                                        <div class="dropdown">
-                                                                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                                                                 aria-expanded="false">
-                                                                                 Fitur
-                                                                             </button>
-                                                                             <ul class="dropdown-menu">
-                                                                                 <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
-                                                                                 <li><a class="dropdown-item" href="#">Dapur</a></li>
-                                                                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                                             </ul>
-                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                        {{-- dropdown end --}}
-                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                      -->
+                                                                                                                                                                                                                                                                                                                 <div class="mx-auto">
+                                                                                                     {{-- dropdown start --}}
+                                                                                                                                                                                                                                                                                                                <div class="dropdown">
+                                                                                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                                                                         aria-expanded="false">
+                                                                                                         Fitur
+                                                                                                     </button>
+                                                                                                     <ul class="dropdown-menu">
+                                                                                                         <li><a class="dropdown-item" href="#">Kamar mandi dalam</a></li>
+                                                                                                         <li><a class="dropdown-item" href="#">Dapur</a></li>
+                                                                                                         <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                                                     </ul>
+                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                {{-- dropdown end --}}
+                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                              -->
 
 
                             <div class="form-floating mb-3 ">
