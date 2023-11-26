@@ -44,13 +44,14 @@ class JenisKamarController extends Controller
         $new_jenis_kamar =  JenisKamar::create($validated);
 
         $jumlah_kamar_validated = $request->validate($this->validator_jumlah_kamar);
-        for ($i = 1; $i <= $jumlah_kamar_validated['jumlah_kamar']; $i++) {
-            DB::table('kamar')->insert([
-                'id_jenis' => $new_jenis_kamar->id,
-                'nama_kamar' => "Kamar $i $new_jenis_kamar->nama_jenis",
-                'status' => 'tersedia',
-            ]);
-        }
+        $this->createKamar($jumlah_kamar_validated['jumlah_kamar'], $new_jenis_kamar->id, $new_jenis_kamar->nama_jenis);
+        // for ($i = 1; $i <= $jumlah_kamar_validated['jumlah_kamar']; $i++) {
+        //     DB::table('kamar')->insert([
+        //         'id_jenis' => $new_jenis_kamar->id,
+        //         'nama_kamar' => "Kamar $i $new_jenis_kamar->nama_jenis",
+        //         'status' => 'tersedia',
+        //     ]);
+        // }
 
         return redirect()->route('admin.ruang');
     }
@@ -79,10 +80,39 @@ class JenisKamarController extends Controller
      */
     public function update(Request $request, JenisKamar $jenisKamar)
     {
-        //TODO: implement update
-        // $validated = $request->validate($this->validator_jenis_kamar);
-        // $jenisKamar->update($validated);
-        // return redirect()->route('admin.ruang');
+        $fasilitas_validated = $request->validate($this->valiator_fasilitas);
+        $jenisKamar->fasilitas->update(['nama_fasilitas' => $fasilitas_validated['fasilitas']]);
+
+        $validated = $request->validate($this->validator_jenis_kamar);
+        $jenisKamar->update($validated);
+
+        $jumlah_kamar_validated = $request->validate($this->validator_jumlah_kamar);
+
+        $jumlah_kamar = $this->getJumlahKamar($jenisKamar->id);
+        //jika yang dimasukkan jumlahnya lebih tinggal tambah
+        if ($jumlah_kamar_validated['jumlah_kamar'] > $jumlah_kamar) {
+            $jumlah_kamar_new = $jumlah_kamar_validated['jumlah_kamar'] - $jumlah_kamar;
+            // $this->createKamar($jumlah_kamar_new, $jenisKamar->id, $jenisKamar->nama_jenis);
+            //TODO: buat kamar dengan nama melanjutkan dari yang terakhir
+        }
+
+        //TODO: jika kurang dari maka?
+        if ($jumlah_kamar_validated['jumlah_kamar'] < $jumlah_kamar) {
+            $jumlah_kamar_new = $jumlah_kamar - $jumlah_kamar_validated['jumlah_kamar'];
+
+            $jumlah_kamar_tidak_tersedia = Kamar::where('id_jenis', $jenisKamar->id)->where('status', 'tidak tersedia')->count();
+
+            //jika lebih banyak yang terpakai
+            if ($jumlah_kamar_new < $jumlah_kamar_tidak_tersedia) {
+                return redirect()->back()->with('kamarTerpakai', 'Tidak bisa mengubah jumlah kamar, beberapa masih terpakai');
+            }
+
+            //jika lebih banyak yang tidak terpakai
+            //TODO: hapus kamar yang tidak terpakai seperti tadi
+
+        }
+
+        return redirect()->route('admin.ruang');
     }
 
     /**
@@ -100,6 +130,14 @@ class JenisKamarController extends Controller
         //jika tidak, hapus, beserta tiap kamar
         Kamar::where('id_jenis', $id)->delete();
         JenisKamar::destroy($id);
+    }
+
+    private function getJumlahKamar($id)
+    {
+        $jumlah_kamar_tidak_tersedia = Kamar::where('id_jenis', $id)->where('status', 'tidak tersedia')->count();
+        $jumlah_kamar_tersedia = Kamar::where('id_jenis', $id)->where('status', 'tersedia')->count();
+        $jumlah_kamar = $jumlah_kamar_tersedia + $jumlah_kamar_tidak_tersedia;
+        return $jumlah_kamar;
     }
 
     private $valiator_fasilitas = [
